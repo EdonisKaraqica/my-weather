@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="col-md-12">
+    <div class="logo-wrapper">
+      <img src="/assets/my_weather_logo.png">
+      <h3 class="text-center my-4">My Weather</h3>
+    </div>
+    <form>
+      <div class="form-group mb-0">
+        <input
+          class="form-control"
+          type="text"
+          name="location"
+          id="location"
+          (focus)="showBar===true"
+          (input)="searchForCities()"
+          [(ngModel)]="location"
+          autocomplete="off"
+          id="city"
+          aria-describedby="weatherLocation"
+          placeholder="Search location..."
+        />
+      </div>
+      <div class="search-results">
+        <ul>
+          <li (click)="onAllowLocation()"><strong>Use your current location</strong><img src="/assets/pin.png"></li>
+        </ul>
+        <ul *ngIf="filteredCities && filteredCities.length > 0">
+          <li *ngFor="let location of filteredCities" (click)="selectLocation(location.capital)">{{ location.capital }}</li>
+        </ul>
+      </div>
+      <i class="far fa-search"></i>
+    </form>
+  </div>
+  <div *ngIf="savedLocations.length > 0" class="tape-wrapper">
+    <div  *ngFor="let rememberedLocation of rememberedLocations" class="col-md-2 col-sm-3 tape">
+        <span>{{ rememberedLocation.location.name }}</span><span class="float-right">{{ rememberedLocation.current.temperature }} &#8451;</span>
+    </div>
+  </div>
+  <div *ngIf="showWeather" class="col-md-12 mt-5 text-center weather-section">
+    <h3>{{ weatherCurrent.request.query }}</h3>
+    <div class="weather-head">
+      <img [src]="weatherCurrent.current.weather_icons" />
+      <h1>
+        {{ weatherCurrent.current.temperature }} &#8451;
+      </h1>
+    </div>
+    <h2>
+      {{ weatherCurrent.current.weather_descriptions[0] | titlecase }}
+    </h2>
+    <span>Feels like {{  weatherCurrent.current.feelslike }} &#8451;</span>
+    <span>Wind speed {{  weatherCurrent.current.wind_speed }} km/h</span>
+    <span>Visibility {{  weatherCurrent.current.visibility }} km</span>
+  </div>
+</div>

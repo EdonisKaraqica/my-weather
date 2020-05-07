@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>MyWeather</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style type="text/css">
+    html, body {
+      height: 100%;
+      position: relative;
+    }
+    .loading {
+      width: 100px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -2.5rem 0 0 -2.5rem;
+      -webkit-animation: spin 2s linear infinite;
+      -moz-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <app-root>
+    <img src="/assets/my_weather_logo.png" class="loading">
+  </app-root>
+</body>
+</html>
